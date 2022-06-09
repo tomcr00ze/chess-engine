@@ -1,5 +1,11 @@
 /***
- *
+ * Tile
+ * represents a chess Tile
+ * takes tileCoordinate as parameter
+ * - key methods:
+ *  - isTileOccupied
+ *  - getPiece
+ * with that, we have two subclasses that defines those behaviours
  */
 
 public abstract class Tile {
@@ -24,6 +30,23 @@ public abstract class Tile {
         @Override
         public Piece getPiece(){
             return null; //because theres no piece to return from empty tiles
+        }
+    }
+    public static final class OccupiedTile extends Tile{
+        //to define the occupied tile
+        //only difference in this from Empty, is there's actually a piece
+        Piece pieceOnTile;
+        OccupiedTile(int tileCoordinate, Piece pieceOnTile){
+            super(tileCoordinate); //call superclass constructor that establish tile coordinate
+            this.pieceOnTile = pieceOnTile; //equal to piece passed on the constructor
+        }
+        @Override
+        public boolean isTileOccupied(){
+            return true;
+        }
+        @Override
+        public Piece getPiece(){
+            return this.pieceOnTile;
         }
     }
 }
